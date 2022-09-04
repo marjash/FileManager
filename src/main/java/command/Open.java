@@ -18,9 +18,9 @@ public class Open extends Command {
     @Override
     public String execute(List<String> args) {
         String everything = "";
-        if (args.isEmpty()) {
+        if (args.isEmpty())
             return "Incorrect argument. Use `open <file name>` to open the file";
-        } else {
+        else {
             File file = context.getCurrentDirectory();
             File[] allFiles = file.listFiles();
             if (allFiles != null) {
@@ -30,8 +30,8 @@ public class Open extends Command {
                         everything = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
                     }
                 }
-                }
             }
+        }
         return everything;
     }
 }
