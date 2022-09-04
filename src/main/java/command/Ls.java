@@ -24,17 +24,15 @@ public class Ls extends Command {
         if (allFiles != null) {
             for (File each: allFiles){
                 result.append(each.getName()).append(":");
-                    result.append(table(each.getName().length()));
+                result.append(table(each.getName().length()));
                 result.append(each.getUsableSpace());
                 if (args.isEmpty())
                     result.append("\n");
                 else {
                     if (args.get(0).equals("-s"))
                         size(result, each);
-                    if (args.get(0).equals("-p")){
+                    if (args.get(0).equals("-p"))
                         permission(result, each);
-                    }
-
                 }
             }
         }
