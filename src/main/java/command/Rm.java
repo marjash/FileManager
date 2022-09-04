@@ -15,14 +15,17 @@ public class Rm extends Command {
     @Override
     public String execute(List<String> args) {
         if (args.isEmpty())
-            return "Incorrect argument. Use `rm <dir name>` to remove the dir";
+            return "Incorrect argument. Use `rm <dir/file name>` to remove the dir/file";
         else {
             File file = context.getCurrentDirectory();
             File[] files = file.listFiles();
             if (files != null) {
                 for (File f : files) {
                     if (f.getName().equals(args.get(0))) {
-                        FileUtils.deleteDirectory(new File(f.getName()));
+                        if (f.isDirectory())
+                            FileUtils.deleteDirectory(new File(f.getName()));
+                        if (f.isFile())
+                            f.delete();
                         return f.getName() + " was deleted";
                     }
                 }
