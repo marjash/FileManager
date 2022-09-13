@@ -10,5 +10,4 @@ public abstract class Command {
     protected final Context context;
 
     public abstract String execute(List<String> args);
-
-}
+    }
