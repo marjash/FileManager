@@ -1,10 +1,4 @@
-mowinterwen
-fri
-thr
-sut
-suntue
-wen
-fri
-thr
-sut
-sunsummer
+five\nfiveonefour
+two
+three
+five
