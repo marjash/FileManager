@@ -8,6 +8,9 @@ import lombok.Setter;
 import java.io.File;
 import java.util.Map;
 
+/**
+ * Contains commands and current directory
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter

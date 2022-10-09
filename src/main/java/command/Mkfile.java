@@ -5,11 +5,19 @@ import lombok.SneakyThrows;
 import java.io.File;
 import java.util.List;
 
+/**
+ * Creates a file with the specified name
+ */
 public class Mkfile extends Command{
     public Mkfile(Context context) {
         super(context);
     }
 
+    /**
+     *
+     * @param args The name of the file to be created
+     * @return Creates file and returns its name
+     */
     @Override
     @SneakyThrows
     public String execute(List<String> args) {

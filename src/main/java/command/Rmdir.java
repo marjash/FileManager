@@ -6,11 +6,20 @@ import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.util.List;
 
+/**
+ * Removes directory
+ */
 public class Rmdir extends Command {
     public Rmdir(Context context) {
         super(context);
     }
 
+    /**
+     * Removes directory if it exists
+     * @param args The name of the directory to be deleted
+     * @return Removes directory and displays a message that the directory has been deleted
+     * if it existed or failed it wasn't
+     */
     @SneakyThrows
     @Override
     public String execute(List<String> args) {
@@ -33,7 +42,12 @@ public class Rmdir extends Command {
         return "failed to remove. Is not a directory";
     }
 
-
+    /**
+     * Removes empty directory
+     * @param f The name of the directory to be deleted
+     * @return Removes directory and displays a message that the directory has been deleted
+     * if it existed or failed it wasn't
+     */
     @SneakyThrows
     private String removeEmptyDir(File f) {
         if (FileUtils.isEmptyDirectory(f)) {
@@ -43,6 +57,13 @@ public class Rmdir extends Command {
         return "failed to remove " + f.getName() + ": Directory not empty";
     }
 
+    /**
+     * Removes directory with files
+     * @param args -r - removes directory with files
+     * @param f The name of the directory to be deleted
+     * @return Removes directory and displays a message that the directory has been deleted
+     * if it existed or failed it wasn't
+     */
     @SneakyThrows
     private String RemoveDirWithFiles(List<String> args, File f){
         if (args.get(0).equals("-r")) {

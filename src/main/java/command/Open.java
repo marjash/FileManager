@@ -8,11 +8,19 @@ import java.io.FileInputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
+/**
+ * Opens and reads file
+ */
 public class Open extends Command {
     public Open(Context context) {
         super(context);
     }
 
+    /**
+     *
+     * @param args The name of the file to be opened
+     * @return The contents of the file, if it exists
+     */
     @SneakyThrows
     @Override
     public String execute(List<String> args) {

@@ -8,17 +8,26 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
+/**
+ * Add text to the file
+ */
 public class Add extends Command {
     public Add(Context context) {
         super(context);
     }
 
+    /**
+     * Adds text to the end or a specific location of the
+     * file, depending on the number of arguments
+     * @param args The name of the file and the text to be added
+     * @return The output text of the file with the added text
+     */
     @SneakyThrows
     @Override
     public String execute(List<String> args) {
         File result = null;
         if (args.isEmpty())
-            return "Incorrect argument. Use `open <file name> <text>` to open the file";
+            return "Incorrect argument. Use `add <file name> <text>` to add text to the file";
         else {
             File file = context.getCurrentDirectory();
             File[] allFiles = file.listFiles();
@@ -37,13 +46,24 @@ public class Add extends Command {
         return FileUtils.readFileToString(result, StandardCharsets.UTF_8);
     }
 
-    private void addTextToEnd(List<String> args, File f) throws IOException {
+    /**
+     *
+     * @param args The text which will add to the end of file
+     * @param f The file to which the text will be added
+     */
+    @SneakyThrows
+    private void addTextToEnd(List<String> args, File f){
         FileUtils.writeStringToFile(
                 f, "\r\n" + args.get(1), StandardCharsets.UTF_8, true);
     }
 
-
-    private void addTextToRandomPosition(List<String> args, File f) throws IOException {
+    /**
+     *
+     * @param args The text which will add to the special location of the file
+     * @param f The file to which the text will be added
+     */
+    @SneakyThrows
+    private void addTextToRandomPosition(List<String> args, File f){
         int position = Integer.parseInt(args.get(2));
         RandomAccessFile rf = new RandomAccessFile(f.getPath(), "rw");
         byte[] textToAdd = args.get(1).getBytes(StandardCharsets.UTF_8);

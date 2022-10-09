@@ -3,19 +3,27 @@ package command;
 import lombok.SneakyThrows;
 
 import java.io.File;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Shows all files in current directory with some info
+ */
 public class Ls extends Command {
 
     public Ls(Context context) {
         super(context);
     }
 
+    /**
+     * Takes the attributes and shows in the table all the
+     * files from the directory with the necessary information
+     * @param args -p - permission -s - size
+     * @return Shows size or/and permissions of files
+     */
     @Override
     @SneakyThrows
     public String execute(List<String> args) {
@@ -50,16 +58,32 @@ public class Ls extends Command {
         return result.toString();
     }
 
+    /**
+     * Shows names of files
+     * @param each Files that will be displayed
+     * @return Names of all files
+     */
     private String name(File each) {
         return String.format("%10s", each.getName());
     }
 
-    private String size(File each) throws IOException {
+    /**
+     * Shows size of files
+     * @param each Files that will be displayed
+     * @return Size of all files
+     */
+    @SneakyThrows
+    private String size(File each){
         Path path = Paths.get(each.getPath());
         long size = Files.size(path);
         return String.format("%20d bytes", size);
     }
 
+    /**
+     * Shows permission of files
+     * @param file Files that will be displayed
+     * @return Permission of all files
+     */
     private String permission(File file) {
         String r = "-";
         String w = "-";
@@ -73,6 +97,11 @@ public class Ls extends Command {
         return String.format("%20s %s %s", r, w, x);
     }
 
+    /**
+     * Create table
+     * @param strings Table header
+     * @param result table
+     */
     private void table(List<String> strings, StringBuilder result) {
         String res = "";
         String res2 = "";
@@ -91,6 +120,11 @@ public class Ls extends Command {
         result.append("\n");
     }
 
+    /**
+     * Creates header for table
+     * @param args Takes the attributes and creates a header accordingly
+     * @return Header
+     */
     private List<String> header(List<String> args) {
         List<String> list = new ArrayList<>();
         list.add("name");

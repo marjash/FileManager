@@ -3,12 +3,21 @@ package command;
 import java.io.File;
 import java.util.List;
 
+/**
+ * Open the current or parent directory
+ */
 public class Cd extends Command {
 
     public Cd(Context context) {
         super(context);
     }
 
+    /**
+     *
+     * @param args The name of the directory to be opened or
+     *             ".." to be opened parent directory
+     * @return Opens the directory if it exists
+     */
     @Override
     public String execute(List<String> args) {
         if (args.isEmpty()) {

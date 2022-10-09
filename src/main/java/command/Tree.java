@@ -9,12 +9,21 @@ import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.List;
 
+/**
+ * Shows all directory and files in tree view
+ */
 public class Tree extends Command {
 
     public Tree(Context context) {
         super(context);
     }
 
+    /**
+     * Displays all files and directories from the current directory
+     * @param args Shows the depth to which files should be displayed
+     * If there is no argument, it shows all files and directories
+     * @return Displays all files and directories from the current directory
+     */
     @SneakyThrows
     @Override
     public String execute(List<String> args) {
@@ -27,6 +36,13 @@ public class Tree extends Command {
         return getFilesFromDir(path, depth, arg);
     }
 
+    /**
+     * Gets files from directory
+     * @param path The path from which the files will be got
+     * @param depth The depth to which files should be displayed
+     * @param args The depth to which files should be displayed
+     * @return
+     */
     @SneakyThrows
     private String getFilesFromDir(Path path, int depth, int args) {
         StringBuilder result = new StringBuilder();
@@ -45,6 +61,11 @@ public class Tree extends Command {
         return result.toString();
     }
 
+    /**
+     * Prints a delimiter based on depth
+     * @param depth The depth to which files should be displayed
+     * @return A delimiter based on depth
+     */
     private String print(int depth) {
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < depth; i++) {
