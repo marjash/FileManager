@@ -1,4 +1,4 @@
-# Foobar
+# About
 
 This file manager helps you work with files from the console using commands
 

@@ -20,7 +20,7 @@ public class Mkdir extends Command{
     public String execute(List<String> args) {
         File newDir = null;
         if (args.isEmpty())
-            return "Incorrect argument. Use `mkdir <dir name>` to create the dir";
+            return "Incorrect argument. Use `- ` to create the dir";
         File currentDirectory = context.getCurrentDirectory();
         newDir = new File(currentDirectory.getPath() + "/" +args.get(0));
         if (!newDir.exists())
